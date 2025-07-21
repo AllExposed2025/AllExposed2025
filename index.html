@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CRYPTORECKONING - The Matrix of Truth</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Courier New', monospace;
+        }
+        
+        body {
+            background-color: #000;
+            color: #0f0;
+            overflow-x: hidden;
+            line-height: 1.6;
+            position: relative;
+            min-height: 100vh;
+        }
+        
+        .matrix-rain {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            opacity: 0.3;
+        }
+        
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 2rem;
+            position: relative;
+            z-index: 1;
+        }
+        
+        header {
+            text-align: center;
+            margin-bottom: 3rem;
+            border-bottom: 1px solid #0f0;
+            padding-bottom: 1.5rem;
+            animation: glow 2s infinite alternate;
+        }
+        
+        h1 {
+            font-size: 3rem;
+            letter-spacing: 5px;
+            text-transform: uppercase;
+            margin-bottom: 1rem;
+            text-shadow: 0 0 10px #0f0;
+        }
+        
+        .anonymous-logo {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+            color: #fff;
+            text-shadow: 0 0 15px #0f0;
+        }
+        
+        .message {
+            background: rgba(0, 20, 0, 0.3);
+            border-left: 3px solid #0f0;
+            padding: 2rem;
+            margin: 2rem 0;
+            position: relative;
+        }
+        
+        .message::before {
+            content: """;
+            font-size: 5rem;
+            position: absolute;
+            top: -1rem;
+            left: 1rem;
+            color: rgba(0, 255, 0, 0.2);
+        }
+        
+        .message-text {
+            font-size: 1.4rem;
+            line-height: 1.8;
+            padding-left: 2rem;
+        }
+        
+        .section-title {
+            font-size: 2rem;
+            text-transform: uppercase;
+            margin: 2.5rem 0 1.5rem;
+            border-bottom: 1px solid #0f0;
+            padding-bottom: 0.5rem;
+            text-shadow: 0 0 5px #0f0;
+        }
+        
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+        
+        .card {
+            background: rgba(0, 15, 0, 0.4);
+            border: 1px solid #0f0;
+            padding: 1.5rem;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .card::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: linear-gradient(90deg, transparent, #0f0, transparent);
+            animation: scan 3s linear infinite;
+        }
+        
+        .card-title {
+            color: #fff;
+            margin-bottom: 1rem;
+            font-size: 1.4rem;
+            text-shadow: 0 0 5px #0f0;
+        }
+        
+        .cynical {
+            color: #ff5555;
+            font-style: italic;
+            margin-top: 1rem;
+            padding: 0.5rem;
+            background: rgba(255, 0, 0, 0.1);
+            border-left: 2px solid #f00;
+        }
+        
+        .direct-message {
+            background: rgba(0, 30, 0, 0.4);
+            border: 1px solid #0f0;
+            padding: 2rem;
+            margin: 3rem 0;
+            position: relative;
+        }
+        
+        .direct-message::after {
+            content: "✉";
+            position: absolute;
+            bottom: 1rem;
+            right: 1rem;
+            font-size: 2rem;
+            opacity: 0.2;
+        }
+        
+        .cta {
+            text-align: center;
+            margin: 3rem 0;
+            padding: 2rem;
+            background: rgba(0, 30, 0, 0.3);
+            border: 1px solid #0f0;
+        }
+        
+        .cta-title {
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            text-shadow: 0 0 10px #0f0;
+        }
+        
+        .links {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+        
+        .link {
+            background: rgba(0, 20, 0, 0.5);
+            border: 1px solid #0f0;
+            padding: 1rem 2rem;
+            text-decoration: none;
+            color: #0f0;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            transition: all 0.3s;
+        }
+        
+        .link:hover {
+            background: #0f0;
+            color: #000;
+            box-shadow: 0 0 20px #0f0;
+        }
+        
+        .token-info {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            margin-top: 2rem;
+            gap: 1rem;
+        }
+        
+        .token-item {
+            text-align: center;
+            padding: 1rem;
+            background: rgba(0, 15, 0, 0.3);
+            border: 1px solid #0f0;
+            flex: 1;
+            min-width: 200px;
+        }
+        
+        footer {
+            text-align: center;
+            margin-top: 3rem;
+            padding: 2rem;
+            border-top: 1px solid #0f0;
+            font-size: 1.2rem;
+            background: rgba(0, 10, 0, 0.2);
+        }
+        
+        .rule {
+            font-weight: bold;
+            color: #ff5555;
+            text-shadow: 0 0 5px #f00;
+            font-size: 1.3rem;
+            margin-top: 1rem;
+        }
+        
+        /* Animations */
+        @keyframes glow {
+            0% { text-shadow: 0 0 5px #0f0; }
+            100% { text-shadow: 0 0 20px #0f0, 0 0 30px #0f0; }
+        }
+        
+        @keyframes scan {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(100%); }
+        }
+        
+        .typewriter {
+            overflow: hidden;
+            border-right: .15em solid #0f0;
+            white-space: nowrap;
+            animation: typing 3.5s steps(40, end), blink-caret .75s step-end infinite;
+        }
+        
+        @keyframes typing {
+            from { width: 0 }
+            to { width: 100% }
+        }
+        
+        @keyframes blink-caret {
+            from, to { border-color: transparent }
+            50% { border-color: #0f0; }
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .container {
+                padding: 1rem;
+            }
+            
+            h1 {
+                font-size: 2rem;
+            }
+            
+            .message-text {
+                font-size: 1.1rem;
+            }
+            
+            .section-title {
+                font-size: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Matrix rain background -->
+    <canvas id="matrix" class="matrix-rain"></canvas>
+    
+    <div class="container">
+        <header>
+            <div class="anonymous-logo">
+                <i class="fas fa-user-secret"></i>
+            </div>
+            <h1>MESSAGE TO THE WORLD</h1>
+        </header>
+        
+        <div class="message">
+            <p class="message-text">
+                "To the VCs sipping champagne in private jets,<br>
+                To the influencers shilling shtcoins with fake grins,<br>
+                To the exchanges 'accidentally' freezing your withdrawals —<br><br>
+                
+                We see you.<br>
+                The chain doesn’t lie.<br>
+                But you do.<br><br>
+                
+                Meet your reckoning."
+            </p>
+        </div>
+        
+        <h2 class="section-title">⚙️ HOW IT WORKS (NO BULLSHIT VERSION)</h2>
+        
+        <h3 style="margin: 1.5rem 0; color: #fff;">AUTOMATED TRUTH</h3>
+        <div class="grid">
+            <div class="card">
+                <h3 class="card-title">1 Token = 1 Human</h3>
+                <p>8.23B tokens minted. Claim via biometric proof.</p>
+                <p class="cynical">"Even VCs can't buy more than 0.00001% – try not to cry."</p>
+            </div>
+            
+            <div class="card">
+                <h3 class="card-title">Elite Tax (10%)</h3>
+                <p>Auto-deducted from whales >1M tokens.</p>
+                <p class="cynical">"Your 'strategic exit' just funded our next billboard outside your HQ."</p>
+            </div>
+            
+            <div class="card">
+                <h3 class="card-title">Rug Pull Oracle</h3>
+                <p>AI scans new tokens, warns you pre-scam.</p>
+                <p class="cynical">"Saves you from the 'alpha' your favorite influencer sold for a Lambo."</p>
+            </div>
+            
+            <div class="card">
+                <h3 class="card-title">Treasury Unlocks</h3>
+                <p>Funds release ONLY if metrics hit (or 50% burns).</p>
+                <p class="cynical">"Fail us? We burn your budget. Try explaining that to your yacht club."</p>
+            </div>
+        </div>
+        
+        <h3 style="margin: 1.5rem 0; color: #fff;">👤 HUMAN-POWERED JUSTICE</h3>
+        <div class="grid">
+            <div class="card">
+                <h3 class="card-title">VC Exposure Bounties</h3>
+                <p>Hunters trace elite wallets to real-world IDs.</p>
+                <p class="cynical">"We don't doxx randoms. We doxx billionaires 'protecting their privacy'."</p>
+            </div>
+            
+            <div class="card">
+                <h3 class="card-title">Data Syndication</h3>
+                <p>Sell adoption heatmaps to hedge funds.</p>
+                <p class="cynical">"We profit from VCs desperate to track the movement they can't control."</p>
+            </div>
+            
+            <div class="card">
+                <h3 class="card-title">Governance Veto</h3>
+                <p>cNFT holders can nuke shady treasury spends.</p>
+                <p class="cynical">*"Our multi-sig signers change monthly. Yours? Still the frat bros from 2017."*</p>
+            </div>
+        </div>
+        
+        <h2 class="section-title">🔥 PROFIT WITH PURPOSE</h2>
+        
+        <div class="card" style="margin-bottom: 2rem;">
+            <h3 class="card-title">Where the Money Flows:</h3>
+            <ul style="padding-left: 1.5rem; margin-top: 1rem;">
+                <li style="margin-bottom: 0.8rem;">Their dump taxes fund our war chest</li>
+                <li style="margin-bottom: 0.8rem;">Our data feeds expose their manipulation</li>
+                <li style="margin-bottom: 0.8rem;">We profit from their corruption</li>
+            </ul>
+        </div>
+        
+        <h3 style="margin: 1rem 0; color: #ff5555;">Why Elites Hate This:</h3>
+        <div class="grid">
+            <div class="card" style="background: rgba(50, 0, 0, 0.3); border-color: #f00;">
+                <p>Their power comes from opacity</p>
+            </div>
+            <div class="card" style="background: rgba(50, 0, 0, 0.3); border-color: #f00;">
+                <p>We turn their weapons against them</p>
+            </div>
+            <div class="card" style="background: rgba(50, 0, 0, 0.3); border-color: #f00;">
+                <p>Accountability is their kryptonite</p>
+            </div>
+        </div>
+        
+        <div class="direct-message">
+            <h3 class="section-title">💀 DIRECT MESSAGE TO THE "ESTABLISHMENT"</h3>
+            <p style="font-size: 1.3rem; line-height: 1.8; margin-top: 1.5rem;">
+                *"You called us 'dumb money'.<br>
+                You laughed when we bought the dip.<br>
+                You thought your offshore wallets were hidden.<br><br>
+                
+                We built an X-ray for your lies.<br>
+                We weaponized your greed.<br>
+                We turned your 'exit liquidity' into our ammunition.<br><br>
+                
+                This isn't a token.<br>
+                It's a public audit of your soul.<br><br>
+                
+                Sleep well."*
+            </p>
+        </div>
+        
+        <div class="cta">
+            <h2 class="cta-title">🚀 JOIN THE #CRYPTORECKONING</h2>
+            
+            <div class="links">
+                <a href="#" class="link">Claim Your Token</a>
+                <a href="#" class="link">Track Elite Wallets</a>
+                <a href="#" class="link">Leak Evidence</a>
+            </div>
+            
+            <div class="token-info">
+                <div class="token-item">
+                    <p>Supply: 8,235,252,250 $XPOS</p>
+                </div>
+                <div class="token-item">
+                    <p>Chain: Solana</p>
+                </div>
+            </div>
+        </div>
+        
+        <footer>
+            <p>all-exposed.xyz | xray.all-exposed.xyz | expose@all-exposed.xyz</p>
+            <p class="rule">Rule 1: Never trust anyone with a "private allocation"</p>
+        </footer>
+    </div>
+    
+    <script>
+        // Matrix rain effect
+        const canvas = document.getElementById('matrix');
+        const ctx = canvas.getContext('2d');
+        
+        // Set canvas dimensions
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+        
+        // Characters for the rain
+        const chars = "01";
+        const fontSize = 14;
+        const columns = canvas.width / fontSize;
+        
+        // Create drops array
+        const drops = [];
+        for (let i = 0; i < columns; i++) {
+            drops[i] = Math.floor(Math.random() * canvas.height / fontSize);
+        }
+        
+        function drawMatrix() {
+            // Semi-transparent black to create trail effect
+            ctx.fillStyle = 'rgba(0, 0, 0, 0.05)';
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+            
+            ctx.fillStyle = '#0f0';
+            ctx.font = `${fontSize}px monospace`;
+            
+            for (let i = 0; i < drops.length; i++) {
+                const text = chars.charAt(Math.floor(Math.random() * chars.length));
+                ctx.fillText(text, i * fontSize, drops[i] * fontSize);
+                
+                // Reset drops that reach bottom
+                if (drops[i] * fontSize > canvas.height && Math.random() > 0.975) {
+                    drops[i] = 0;
+                }
+                
+                drops[i]++;
+            }
+        }
+        
+        // Animation loop
+        setInterval(drawMatrix, 33);
+        
+        // Handle window resize
+        window.addEventListener('resize', function() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        });
+        
+        // Add typewriter effect to some elements
+        document.addEventListener('DOMContentLoaded', function() {
+            const message = document.querySelector('.message-text');
+            message.classList.add('typewriter');
+        });
+    </script>
+</body>
+</html>
