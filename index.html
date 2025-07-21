@@ -2,418 +2,59 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>CRYPTORECKONING - THE MATRIX OF TRUTH</title>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>CRYPTORECKONING - The Matrix of Truth</title>
   <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-      font-family: "Courier New", monospace;
-    }
-
     body {
-      background-color: #000;
-      color: #0f0;
-      overflow-x: hidden;
-      line-height: 1.6;
-      position: relative;
-      min-height: 100vh;
-    }
-
-    .matrix-rain {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      z-index: -1;
-      opacity: 0.15;
-    }
-
-    .container {
-      max-width: 1000px;
-      margin: 0 auto;
+      background-color: black;
+      color: #00FF00;
+      font-family: monospace;
       padding: 2rem;
-      position: relative;
-      z-index: 1;
-      background: rgba(0, 10, 0, 0.3);
-      border: 1px solid #0f0;
-      box-shadow: 0 0 50px #00ff0055;
     }
-
-    header {
-      text-align: center;
-      margin-bottom: 3rem;
-      padding: 2rem;
-      border: 1px solid #0f0;
-      background: rgba(0, 30, 0, 0.2);
-      position: relative;
-      overflow: hidden;
+    a {
+      color: #00ffff;
+      text-decoration: none;
     }
-
-    header::before {
-      content: "";
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: linear-gradient(45deg, transparent 48%, #0f0 49%, #0f0 51%, transparent 52%);
-      background-size: 10px 10px;
-      opacity: 0.3;
-      pointer-events: none;
+    a:hover {
+      text-decoration: underline;
     }
-
-    h1 {
-      font-size: 4rem;
-      letter-spacing: 5px;
-      text-transform: uppercase;
-      color: #0f0;
-      text-shadow: 0 0 10px #0f0;
-      margin-bottom: 0.5rem;
-      font-weight: 700;
-    }
-
-    .subtitle {
-      font-size: 1.8rem;
-      color: #aaffaa;
-      text-shadow: 0 0 5px #0f0;
-      margin-bottom: 1rem;
-    }
-
-    .message {
-      background: rgba(0, 20, 0, 0.3);
-      border: 1px solid #0f0;
-      padding: 2rem;
-      margin: 2rem 0;
-      position: relative;
-    }
-
-    .message::before {
-      content: "⚠ TOP SECRET ⚠";
-      position: absolute;
-      top: -10px;
-      left: 20px;
-      background: #000;
-      padding: 0 10px;
-      font-size: 0.8rem;
-      color: #f00;
-    }
-
-    .target-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 1rem;
-      margin: 2rem 0;
-    }
-
-    .target-card {
-      background: rgba(20, 0, 0, 0.4);
-      border: 1px solid #f00;
-      padding: 1.5rem;
-      position: relative;
-    }
-
-    .target-card::after {
-      content: ">";
-      position: absolute;
-      right: 1rem;
-      color: #f00;
-      animation: blink 1s infinite;
-    }
-
-    @keyframes blink {
-      0%, 100% { opacity: 0; }
-      50% { opacity: 1; }
-    }
-
-    .typewriter {
-      overflow: hidden;
-      border-right: 0.15em solid #0f0;
-      white-space: nowrap;
-      animation: typing 3.5s steps(40, end), blink-caret 0.75s step-end infinite;
-    }
-
-    @keyframes typing {
-      from { width: 0; }
-      to { width: 100%; }
-    }
-
-    @keyframes blink-caret {
-      from, to { border-color: transparent; }
-      50% { border-color: #0f0; }
-    }
-
-    .glitch {
-      position: relative;
-    }
-
-    .glitch::before, .glitch::after {
-      content: attr(data-text);
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: rgba(0, 20, 0, 0.3);
-    }
-
-    .glitch::before {
-      left: 2px;
-      text-shadow: -2px 0 #f00;
-      clip: rect(44px, 450px, 56px, 0);
-      animation: glitch-anim 5s infinite linear alternate-reverse;
-    }
-
-    .glitch::after {
-      left: -2px;
-      text-shadow: -2px 0 #0f0;
-      clip: rect(44px, 450px, 56px, 0);
-      animation: glitch-anim2 5s infinite linear alternate-reverse;
-    }
-
-    @keyframes glitch-anim {
-      0% { clip: rect(31px, 9999px, 94px, 0); }
-      100% { clip: rect(82px, 9999px, 64px, 0); }
-    }
-
-    .terminal {
-      background: rgba(0, 10, 0, 0.5);
-      border: 1px solid #0f0;
-      padding: 1.5rem;
-      margin: 2rem 0;
-      font-family: "Courier New", monospace;
-    }
-
-    .prompt {
-      color: #0f0;
-    }
-
-    .command {
-      color: #aaffaa;
-    }
-
-    .response {
-      color: #fff;
-      margin-top: 0.5rem;
-    }
-
-    .radar {
-      width: 200px;
-      height: 200px;
-      border-radius: 50%;
-      border: 2px solid #0f0;
-      position: relative;
-      margin: 2rem auto;
-    }
-
-    .radar::before {
-      content: "";
-      position: absolute;
-      width: 100%;
-      height: 100%;
-      border-radius: 50%;
-      animation: radar-pulse 4s infinite;
-      box-shadow: 0 0 0 10px rgba(0, 255, 0, 0.1);
-    }
-
-    @keyframes radar-pulse {
-      0% { transform: scale(0.1); opacity: 1; }
-      100% { transform: scale(1); opacity: 0; }
+    .logo {
+      width: 22px;
+      vertical-align: middle;
+      margin-right: 6px;
     }
   </style>
 </head>
 <body>
-  <canvas id="matrix" class="matrix-rain"></canvas>
+  <h1>> ./cryptoreckoning --init</h1>
+  <p>_Welcome to the reckoning_</p>
 
-  <div class="container">
-    <header>
-      <h1 class="glitch" data-text="ALL EXPOSED">ALL EXPOSED</h1>
-      <h2 class="subtitle">$XPOS - THE UNLISTED TRUTH</h2>
-      <p style="color: #6f9f6f; font-style: italic;">
-        > Tracking <span id="wallet-counter">3,421,876</span> elite wallets...
-      </p>
-    </header>
+  <h2>> ./xpos_token --status</h2>
+  <p>$XPOS active on chain. Tracking initiated.</p>
 
-    <div class="message">
-      <p style="font-size: 1.3rem; line-height: 1.8;">
-        <span class="typewriter">
-          > DECRYPTING MESSAGE FROM THE RESISTANCE...
-        </span>
-      </p>
-      <p style="margin-top: 1.5rem; font-family: 'Courier New', monospace;">
-        To the "whales" moving markets from your tax havens,<br>
-        To the CEX listing committees taking bribes,<br>
-        To the "anonymous founders" who are definitely not your college roommate -<br><br>
-        We built a blockchain scanner for your bullshit.<br>
-        Every OTC deal. Every wash trade. Every "accidental" wallet leak.<br><br>
-        <span style="color: #f00;">YOUR MOVE.</span>
-      </p>
-    </div>
+  <h2>> ./all_exposed --theme</h2>
+  <p>"Expose the matrix. No masters. No mercy."</p>
 
-    <div class="terminal">
-      <p class="prompt">> ./target_scanner --update --elites</p>
-      <p class="command">Scanning for high-value targets...</p>
+  <h2>> ./target_scanner --update --elites</h2>
+  <p>Global elite activity log initiated. Tracking corruption, collusion, and control.</p>
 
-      <div class="target-grid">
-        <div class="target-card">
-          <h3>VC DUMPER #ALPHA</h3>
-          <p>> Last moved: 42,069 ETH</p>
-          <p>> Bounty: 500k $XPOS</p>
-        </div>
-        <div class="target-card">
-          <h3>INFLUENCER @SHILL</h3>
-          <p>> Rugged projects: 37</p>
-          <p>> Bounty: 100k $XPOS</p>
-        </div>
-        <div class="target-card">
-          <h3>EXCHANGE "X"</h3>
-          <p>> Delisted tokens: 12</p>
-          <p>> Evidence needed</p>
-        </div>
-      </div>
+  <!-- 🔥 NIEUWE SECTIE HIER -->
+  <h2>> ./blackpaper --access</h2>
+  <p>
+    <img src="anonymous.png" alt="Anonymous Logo" class="logo"/>
+    <a href="blackpaper.html" target="_blank">Read the Blackpaper: The Matrix of $XPOS</a>
+  </p>
 
-      <p class="response" style="color: #f00;">
-        WARNING: TARGETS MAY BE ARMED WITH LAWYERS
-      </p>
-    </div>
+  <h2>> ./tokenomics --init</h2>
+  <p>Tokenomic operations have migrated. See blackpaper for detailed breakdown.</p>
 
-    <!-- ✅ Nieuw toegevoegde sectie met blackpaper-link -->
-  <div class="blackpaper-link">
-    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/10/Anonymous_emblem.svg/240px-Anonymous_emblem.svg.png" alt="Anonymous logo" />
-    <a href="blackpaper.html" target="_blank"><strong>Read the Blackpaper</strong> – the origin of $XPOS</a>
-  </div>
+  <h2>> ./transparency --live</h2>
+  <p>Wallets, burns and transactions are tracked in real-time. Truth is public.</p>
 
-    <!-- NEW: TOKENOMICS -->
-    <div class="terminal">
-      <p class="prompt">> ./tokenomics --init</p>
-      <p class="command">Deploying $XPOS truth protocol...</p>
+  <h2>> ./rewards --deploy</h2>
+  <p>Exposure bounties active. Rewards for viral disruption, memes and intelligence leaks.</p>
 
-      <div style="margin-top: 2rem;">
-        <ul style="list-style-type: square; padding-left: 1.5rem; color: #aaffaa; font-family: 'Courier New', monospace;">
-          <li>NO TEAM TOKENS. NO BACKDOORS. NO MERCY.</li>
-          <li>TRACE EVERY WALLET. EXPOSE EVERY LIE.</li>
-          <li>TARGETS: VC PARASITES | SHILLFLUENCERS | SERIAL RUGGERS</li>
-          <li>YOU DROP A DIME, WE DROP THE FILES.</li>
-          <li>$XPOS: FUEL FOR THE INFO WAR</li>
-          <li>AUTO-BURN = AUTO-JUSTICE</li>
-          <li>NO TAX. NO COMPROMISES.</li>
-          <li>TRUSTLESS. FACELESS. MERCILESS.</li>
-        </ul>
-      </div>
-
-      <div style="margin-top: 2.5rem;">
-        <h3 style="color: #f00;">$XPOS CONTRACT (ON SOL)</h3>
-        <p style="font-family: 'Courier New', monospace; color: #fff;">Address: <span style="color: #aaffaa;">TBA</span></p>
-      </div>
-    </div>
-
-    <div style="text-align: center;">
-      <div class="radar"></div>
-      <h3 style="margin-bottom: 1rem;">$XPOS CONTRACT LOCKED</h3>
-      <p style="font-family: 'Courier New'; color: #aaffaa;">
-        > Contract renounced @ launch: TRUE<br>
-        > LP_BURNED: TRUE<br>
-        > MINT_DISABLED: TRUE<br>
-        > TAX: 0%<br>
-        > ELITES_OWN: 0.00001%
-      </p>
-    </div>
-
-    <div style="text-align: center; margin: 3rem 0;">
-      <a href="#" style="display: inline-block; padding: 1rem 2rem; background: #000; color: #0f0; border: 1px solid #0f0; text-decoration: none; font-size: 1.2rem; margin: 0.5rem;">
-        > JOIN THE RECKONING
-      </a>
-      <a href="#" style="display: inline-block; padding: 1rem 2rem; background: #000; color: #f00; border: 1px solid #f00; text-decoration: none; font-size: 1.2rem; margin: 0.5rem;">
-        > LEAK EVIDENCE
-      </a>
-    </div>
-
-    <!-- SOCIAL ICONS -->
-    <div style="text-align: center; margin-top: 2rem;">
-      <a href="#" style="margin: 0 1rem; color: #0f0; font-size: 2rem;">
-        <i class="fab fa-x-twitter"></i>
-      </a>
-      <a href="#" style="margin: 0 1rem; color: #0f0; font-size: 2rem;">
-        <i class="fab fa-telegram"></i>
-      </a>
-    </div>
-
-    <footer style="text-align: center; margin-top: 3rem; padding: 2rem; border-top: 1px solid #0f0;">
-      <p style="font-family: 'Courier New';">
-        > SYSTEM STATUS: ONLINE<br>
-        > ENCRYPTION: ACTIVE<br>
-        > ELITE PANIC LEVEL: <span id="panic-meter">RISING</span>
-      </p>
-    </footer>
-  </div>
-
-  <script>
-    const canvas = document.getElementById("matrix");
-    const ctx = canvas.getContext("2d");
-    canvas.width = window.innerWidth;
-    canvas.height = window.innerHeight;
-
-    const katakana = "アァカサタナハマヤャラワガザダバパイィキシチニヒミリヰギジヂビピウゥクスツヌフムユュルグズブヅプエェケセテネヘメレヱゲゼデベペオォコソトノホモヨョロヲゴゾドボポヴッン";
-    const latin = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-    const nums = "0123456789";
-    const symbols = "!@#$%^&*()_+-=[]{}|;':\",./<>?`~";
-    const alphabet = katakana + latin + nums + symbols;
-
-    const fontSize = 16;
-    const columns = canvas.width / fontSize;
-    const rainDrops = [];
-    for (let x = 0; x < columns; x++) rainDrops[x] = 1;
-
-    const draw = () => {
-      ctx.fillStyle = "rgba(0, 0, 0, 0.05)";
-      ctx.fillRect(0, 0, canvas.width, canvas.height);
-      ctx.fillStyle = "#0f0";
-      ctx.font = fontSize + "px monospace";
-      for (let i = 0; i < rainDrops.length; i++) {
-        const text = alphabet.charAt(Math.floor(Math.random() * alphabet.length));
-        ctx.fillText(text, i * fontSize, rainDrops[i] * fontSize);
-        if (rainDrops[i] * fontSize > canvas.height && Math.random() > 0.975) rainDrops[i] = 0;
-        rainDrops[i]++;
-      }
-    };
-    setInterval(draw, 30);
-
-    function animateValue(id, start, end, duration) {
-      let startTimestamp = null;
-      const element = document.getElementById(id);
-      const step = (timestamp) => {
-        if (!startTimestamp) startTimestamp = timestamp;
-        const progress = Math.min((timestamp - startTimestamp) / duration, 1);
-        element.innerHTML = Math.floor(progress * (end - start) + start).toLocaleString();
-        if (progress < 1) window.requestAnimationFrame(step);
-      };
-      window.requestAnimationFrame(step);
-    }
-
-    function triggerGlitch() {
-      const glitch = document.querySelector(".glitch");
-      glitch.style.animation = "none";
-      void glitch.offsetWidth;
-      glitch.style.animation = null;
-      setTimeout(triggerGlitch, 5000 + Math.random() * 5000);
-    }
-
-    document.addEventListener("DOMContentLoaded", () => {
-      animateValue("wallet-counter", 0, 3421876, 2000);
-      triggerGlitch();
-      const panicLevels = ["RISING", "ELEVATED", "CRITICAL", "MAXIMUM"];
-      setInterval(() => {
-        document.getElementById("panic-meter").textContent = panicLevels[Math.floor(Math.random() * panicLevels.length)];
-      }, 3000);
-    });
-
-    window.addEventListener("resize", () => {
-      canvas.width = window.innerWidth;
-      canvas.height = window.innerHeight;
-    });
-  </script>
+  <h2>> ./end_transmission</h2>
+  <p>Ξ Stay anonymous. Stay exposed. Ξ</p>
 </body>
 </html>
