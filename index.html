@@ -3,299 +3,441 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>CRYPTORECKONING - The Unlisted Truth</title>
-  <link
-    rel="stylesheet"
-    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
-  />
+  <title>CRYPTORECKONING - THE MATRIX OF TRUTH</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
   <style>
-    /* [Keep all previous CSS] */
-    /* ADD THESE NEW STYLES */
-    .elite-target {
-      background: rgba(50, 0, 0, 0.3);
-      border: 1px solid #f00;
-      padding: 1.5rem;
-      margin: 2rem 0;
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: "Courier New", monospace;
     }
-    
+
+    body {
+      background-color: #000;
+      color: #0f0;
+      overflow-x: hidden;
+      line-height: 1.6;
+      position: relative;
+      min-height: 100vh;
+    }
+
+    /* 🔥 ENHANCED MATRIX RAIN */
+    .matrix-rain {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+      opacity: 0.15;
+    }
+
+    .container {
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: 2rem;
+      position: relative;
+      z-index: 1;
+      background: rgba(0, 10, 0, 0.3);
+      border: 1px solid #0f0;
+      box-shadow: 0 0 50px #00ff0055;
+    }
+
+    /* 💀 CYBERPUNK HEADER */
+    header {
+      text-align: center;
+      margin-bottom: 3rem;
+      padding: 2rem;
+      border: 1px solid #0f0;
+      background: rgba(0, 30, 0, 0.2);
+      position: relative;
+      overflow: hidden;
+    }
+
+    header::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(
+        45deg,
+        transparent 48%,
+        #0f0 49%,
+        #0f0 51%,
+        transparent 52%
+      );
+      background-size: 10px 10px;
+      opacity: 0.3;
+      pointer-events: none;
+    }
+
+    h1 {
+      font-size: 4rem;
+      letter-spacing: 5px;
+      text-transform: uppercase;
+      color: #0f0;
+      text-shadow: 0 0 10px #0f0;
+      margin-bottom: 0.5rem;
+      font-weight: 700;
+    }
+
+    .subtitle {
+      font-size: 1.8rem;
+      color: #aaffaa;
+      text-shadow: 0 0 5px #0f0;
+      margin-bottom: 1rem;
+    }
+
+    /* 🕵️‍♂️ SECURE MESSAGE BOX */
+    .message {
+      background: rgba(0, 20, 0, 0.3);
+      border: 1px solid #0f0;
+      padding: 2rem;
+      margin: 2rem 0;
+      position: relative;
+    }
+
+    .message::before {
+      content: "⚠ TOP SECRET ⚠";
+      position: absolute;
+      top: -10px;
+      left: 20px;
+      background: #000;
+      padding: 0 10px;
+      font-size: 0.8rem;
+      color: #f00;
+    }
+
+    /* 🎯 TARGET CARDS */
     .target-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
       gap: 1rem;
-      margin-top: 1rem;
+      margin: 2rem 0;
     }
-    
+
     .target-card {
-      background: rgba(30, 0, 0, 0.4);
+      background: rgba(20, 0, 0, 0.4);
       border: 1px solid #f00;
-      padding: 1rem;
+      padding: 1.5rem;
       position: relative;
     }
-    
+
     .target-card::after {
-      content: "⚠️";
+      content: ">";
       position: absolute;
-      bottom: 0.5rem;
-      right: 0.5rem;
-      font-size: 1.5rem;
+      right: 1rem;
+      color: #f00;
+      animation: blink 1s infinite;
     }
-    
-    .burn-counter {
-      font-size: 1.8rem;
-      text-align: center;
-      margin: 1rem 0;
-      color: #ff5555;
-      text-shadow: 0 0 10px #f00;
+
+    @keyframes blink {
+      0%, 100% { opacity: 0; }
+      50% { opacity: 1; }
     }
-    
-    .contract-link {
-      color: #0f0;
-      text-decoration: underline;
-      word-break: break-all;
-      display: block;
-      margin-top: 0.5rem;
+
+    /* 💾 TYPEWRITER EFFECT */
+    .typewriter {
+      overflow: hidden;
+      border-right: 0.15em solid #0f0;
+      white-space: nowrap;
+      animation: typing 3.5s steps(40, end), blink-caret 0.75s step-end infinite;
     }
-    
-    .ticker {
-      position: fixed;
-      bottom: 0;
+
+    @keyframes typing {
+      from { width: 0; }
+      to { width: 100%; }
+    }
+
+    @keyframes blink-caret {
+      from, to { border-color: transparent; }
+      50% { border-color: #0f0; }
+    }
+
+    /* 🔌 GLITCH EFFECTS */
+    .glitch {
+      position: relative;
+    }
+
+    .glitch::before, .glitch::after {
+      content: attr(data-text);
+      position: absolute;
+      top: 0;
       left: 0;
       width: 100%;
-      background: rgba(0, 20, 0, 0.8);
-      padding: 0.5rem;
-      z-index: 100;
-      overflow: hidden;
-      border-top: 1px solid #0f0;
+      height: 100%;
+      background: rgba(0, 20, 0, 0.3);
     }
-    
-    .ticker-content {
-      display: inline-block;
-      white-space: nowrap;
-      animation: ticker 30s linear infinite;
-      color: #ff5555;
+
+    .glitch::before {
+      left: 2px;
+      text-shadow: -2px 0 #f00;
+      clip: rect(44px, 450px, 56px, 0);
+      animation: glitch-anim 5s infinite linear alternate-reverse;
     }
-    
-    @keyframes ticker {
-      0% { transform: translateX(100%); }
-      100% { transform: translateX(-100%); }
+
+    .glitch::after {
+      left: -2px;
+      text-shadow: -2px 0 #0f0;
+      clip: rect(44px, 450px, 56px, 0);
+      animation: glitch-anim2 5s infinite linear alternate-reverse;
+    }
+
+    @keyframes glitch-anim {
+      0% { clip: rect(31px, 9999px, 94px, 0); }
+      20% { clip: rect(112px, 9999px, 76px, 0); }
+      40% { clip: rect(75px, 9999px, 107px, 0); }
+      60% { clip: rect(98px, 9999px, 109px, 0); }
+      80% { clip: rect(46px, 9999px, 102px, 0); }
+      100% { clip: rect(82px, 9999px, 64px, 0); }
+    }
+
+    /* 🖥️ TERMINAL STYLES */
+    .terminal {
+      background: rgba(0, 10, 0, 0.5);
+      border: 1px solid #0f0;
+      padding: 1.5rem;
+      margin: 2rem 0;
+      font-family: "Courier New", monospace;
+    }
+
+    .prompt {
+      color: #0f0;
+    }
+
+    .command {
+      color: #aaffaa;
+    }
+
+    .response {
+      color: #fff;
+      margin-top: 0.5rem;
+    }
+
+    /* 📡 PULSING RADAR */
+    .radar {
+      width: 200px;
+      height: 200px;
+      border-radius: 50%;
+      border: 2px solid #0f0;
+      position: relative;
+      margin: 2rem auto;
+    }
+
+    .radar::before {
+      content: "";
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      animation: radar-pulse 4s infinite;
+      box-shadow: 0 0 0 10px rgba(0, 255, 0, 0.1);
+    }
+
+    @keyframes radar-pulse {
+      0% { transform: scale(0.1); opacity: 1; }
+      100% { transform: scale(1); opacity: 0; }
     }
   </style>
 </head>
 <body>
+  <!-- ENHANCED MATRIX RAIN -->
   <canvas id="matrix" class="matrix-rain"></canvas>
 
   <div class="container">
     <header>
-      <div class="anonymous-logo">
-        <i class="fas fa-eye"></i>
-      </div>
-      <h1>THE CRYPTO RECKONING</h1>
-      <h2 class="subtitle">$XPOS - The Unlisted Truth</h2>
-      <p class="hero-tagline">Your offshore wallet won't save you</p>
+      <h1 class="glitch" data-text="ALL EXPOSED">ALL EXPOSED</h1>
+      <h2 class="subtitle">$XPOS - THE UNLISTED TRUTH</h2>
+      <p style="color: #6f9f6f; font-style: italic;">
+        > Tracking <span id="wallet-counter">3,421,876</span> elite wallets...
+      </p>
     </header>
 
+    <!-- SECURE MESSAGE BOX -->
     <div class="message">
-      <p class="message-text">
-        "To the VCs dumping on retail from your private islands,<br>
-        To the influencers shilling exit liquidity as 'alpha',<br>
-        To the exchanges listing your cousin's shitcoin but delisting truth -<br><br>
+      <p style="font-size: 1.3rem; line-height: 1.8;">
+        <span class="typewriter">
+          > DECRYPTING MESSAGE FROM THE RESISTANCE...
+        </span>
+      </p>
+      <p style="margin-top: 1.5rem; font-family: 'Courier New', monospace;">
+        To the "whales" moving markets from your tax havens,<br>
+        To the CEX listing committees taking bribes,<br>
+        To the "anonymous founders" who are definitely not your college roommate -<br><br>
         
-        We see your wallet history.<br>
-        We track your dummy corporations.<br>
-        We know your 'anonymous team' is just your frat bros.<br><br>
+        We built a blockchain scanner for your bullshit.<br>
+        Every OTC deal. Every wash trade. Every "accidental" wallet leak.<br><br>
         
-        Sleep well."
+        <span style="color: #f00;">YOUR MOVE.</span>
       </p>
     </div>
 
-    <!-- Add token contract address -->
-    <div class="card" style="text-align: center;">
-      <h3 class="card-title">THE UNMOVEABLE CONTRACT</h3>
-      <p>LP burned · Mint authority revoked · 0% tax</p>
-      <a href="#" class="contract-link">Xpo...Wz9 on Solscan</a>
-      <div class="burn-counter">
-        $42,069,420 LP BURNED
-      </div>
-    </div>
-
-    <!-- Enhanced elite targeting section -->
-    <div class="elite-target">
-      <h3 class="section-title">🎯 LIVE TARGETS</h3>
-      <p style="margin-bottom: 1rem;">Help us expose these market manipulators:</p>
+    <!-- LIVE TARGETS TERMINAL -->
+    <div class="terminal">
+      <p class="prompt">> ./target_scanner --update --elites</p>
+      <p class="command">Scanning for high-value targets...</p>
       
       <div class="target-grid">
         <div class="target-card">
-          <h4>VC DUMPER #327</h4>
-          <p>2.4M SOL moved to CEX</p>
-          <p>Bounty: $250k SOL</p>
+          <h3>VC DUMPER #ALPHA</h3>
+          <p>> Last moved: 42,069 ETH</p>
+          <p>> Bounty: $500k</p>
         </div>
         
         <div class="target-card">
-          <h4>INFLUENCER @MoonLord</h4>
-          <p>37 rugged projects</p>
-          <p>Bounty: $100k XPOS</p>
+          <h3>INFLUENCER @SHILL</h3>
+          <p>> Rugged projects: 37</p>
+          <p>> Bounty: 100k $XPOS</p>
         </div>
         
         <div class="target-card">
-          <h4>EXCHANGE "X"</h4>
-          <p>Delisted 3 transparency tokens</p>
-          <p>Bounty: Leaked docs</p>
+          <h3>EXCHANGE "X"</h3>
+          <p>> Delisted tokens: 12</p>
+          <p>> Evidence needed</p>
         </div>
       </div>
       
-      <div style="text-align: center; margin-top: 1rem;">
-        <a href="#" class="link">Submit Evidence</a>
-      </div>
+      <p class="response" style="color: #f00;">
+        WARNING: TARGETS MAY BE ARMED WITH LAWYERS
+      </p>
     </div>
 
-    <!-- Updated tokenomics section -->
-    <h2 class="section-title">💀 TOKENOMICS THAT HURT ELITES</h2>
-    <div class="grid">
-      <div class="card">
-        <h3 class="card-title">1 HUMAN = 1 TOKEN</h3>
-        <p>8.23B supply · Biometric claim</p>
-        <p class="cynical">"Your 'whale wallet' can't buy more than a schoolteacher"</p>
-      </div>
-      
-      <div class="card">
-        <h3 class="card-title">ELITE TAX (10%)</h3>
-        <p>Auto-siphoned from >1M wallets</p>
-        <p class="cynical">"Funding billboards outside your VC office since 2025"</p>
-      </div>
-      
-      <div class="card">
-        <h3 class="card-title">AUTO-EXPOSURE</h3>
-        <p>On-chain tracking of VC movements</p>
-        <p class="cynical">"We see your OTC deals before your investors do"</p>
-      </div>
+    <!-- TOKEN CONTRACT RADAR -->
+    <div style="text-align: center;">
+      <div class="radar"></div>
+      <h3 style="margin-bottom: 1rem;">$XPOS CONTRACT LOCKED</h3>
+      <p style="font-family: 'Courier New'; color: #aaffaa;">
+        > LP_BURNED: TRUE<br>
+        > MINT_DISABLED: TRUE<br>
+        > TAX: 0%<br>
+        > ELITES_OWN: 0.00001%
+      </p>
     </div>
 
-    <!-- New section: How We Profit From Them -->
-    <h2 class="section-title">💰 HOW WE MONETIZE THEIR CORRUPTION</h2>
-    <div class="grid">
-      <div class="card">
-        <h3 class="card-title">DATA SYNDICATION</h3>
-        <p>Sell VC wallet alerts to retail</p>
-        <p class="cynical">"Your dump patterns fund our operations"</p>
-      </div>
-      
-      <div class="card">
-        <h3 class="card-title">BOUNTY MARKUP</h3>
-        <p>30% fee on exposure crowdfunds</p>
-        <p class="cynical">"Your enemies pay us to find you"</p>
-      </div>
-      
-      <div class="card">
-        <h3 class="card-title">AUDIT RACKET</h3>
-        <p>Charge projects for 'transparency seals'</p>
-        <p class="cynical">"Pay us or we might find something interesting"</p>
-      </div>
+    <!-- CYBERPUNK CTA -->
+    <div style="text-align: center; margin: 3rem 0;">
+      <a href="#" style="
+        display: inline-block;
+        padding: 1rem 2rem;
+        background: #000;
+        color: #0f0;
+        border: 1px solid #0f0;
+        text-decoration: none;
+        font-size: 1.2rem;
+        margin: 0.5rem;
+        transition: all 0.3s;
+      ">
+        > JOIN THE RECKONING
+      </a>
+      <a href="#" style="
+        display: inline-block;
+        padding: 1rem 2rem;
+        background: #000;
+        color: #f00;
+        border: 1px solid #f00;
+        text-decoration: none;
+        font-size: 1.2rem;
+        margin: 0.5rem;
+        transition: all 0.3s;
+      ">
+        > LEAK EVIDENCE
+      </a>
     </div>
 
-    <!-- Updated CTA section -->
-    <div class="cta">
-      <h2 class="cta-title">YOUR MOVE, "WHALE"</h2>
-      
-      <div class="links">
-        <a href="#" class="link">Claim Your Share</a>
-        <a href="#" class="link">Track Elite Wallets</a>
-        <a href="#" class="link">Burn an Influencer</a>
-      </div>
-      
-      <div class="token-info">
-        <div class="token-item xpos-token">
-          <p>8,235,252,250 <span>$XPOS</span></p>
-        </div>
-        <div class="token-item">
-          <p>No VCs · No Pre-sale · No Escape</p>
-        </div>
-      </div>
-    </div>
-
-    <!-- New ticker -->
-    <div class="ticker">
-      <div class="ticker-content">
-        [LATEST EXPOSURE] VC DUMP DETECTED: 3.2M SOL MOVED TO BINANCE · [DELIST WARNING] KUCOIN THREATENS $XPOS DELISTING · [BOUNTY] $500k FOR PROOF OF EXCHANGE INSIDER TRADING
-      </div>
-    </div>
-
-    <footer>
-      <p>truth.all-exposed.xyz | xray.all-exposed.xyz | leaks@all-exposed.xyz</p>
-      <p class="rule">Rule #1: If they have a "private allocation", they have a private jet to escape</p>
+    <footer style="text-align: center; margin-top: 3rem; padding: 2rem; border-top: 1px solid #0f0;">
+      <p style="font-family: 'Courier New';">
+        > SYSTEM STATUS: ONLINE<br>
+        > ENCRYPTION: ACTIVE<br>
+        > ELITE PANIC LEVEL: <span id="panic-meter">RISING</span>
+      </p>
     </footer>
   </div>
 
   <script>
-    // [Keep existing matrix code]
+    // ENHANCED MATRIX RAIN
+    const canvas = document.getElementById("matrix");
+    const ctx = canvas.getContext("2d");
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
     
-    // Add these new features:
+    const katakana = "アァカサタナハマヤャラワガザダバパイィキシチニヒミリヰギジヂビピウゥクスツヌフムユュルグズブヅプエェケセテネヘメレヱゲゼデベペオォコソトノホモヨョロヲゴゾドボポヴッン";
+    const latin = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+    const nums = "0123456789";
+    const symbols = "!@#$%^&*()_+-=[]{}|;':\",./<>?`~";
+    const alphabet = katakana + latin + nums + symbols;
     
-    // 1. Live bounty counters
-    const bounties = [
-      { name: "VC #327", amount: 250000 },
-      { name: "@MoonLord", amount: 100000 },
-      { name: "Exchange X", amount: 0 }
-    ];
+    const fontSize = 16;
+    const columns = canvas.width / fontSize;
+    const rainDrops = [];
     
-    function updateBounties() {
-      document.querySelectorAll('.target-card').forEach((card, i) => {
-        bounties[i].amount += Math.floor(Math.random() * 100);
-        const bountyElement = card.querySelector('p:last-child');
-        if (bountyElement) {
-          bountyElement.innerHTML = `Bounty: $${bounties[i].amount.toLocaleString()}`;
-        }
-      });
-      
-      setTimeout(updateBounties, 5000);
+    for (let x = 0; x < columns; x++) {
+      rainDrops[x] = 1;
     }
     
-    // 2. Contract address reveal animation
-    function revealContract() {
-      const contractLink = document.querySelector('.contract-link');
-      let text = "Xpos...Wz9";
-      let fullText = "XpoSJH28d9aKcB5fT7mRnLqV3gE1wZ6yP4Wz9";
+    const draw = () => {
+      ctx.fillStyle = "rgba(0, 0, 0, 0.05)";
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
       
-      let i = 5;
-      const revealInterval = setInterval(() => {
-        if (i <= fullText.length) {
-          contractLink.textContent = fullText.substring(0, i) + '...';
-          i++;
-        } else {
-          clearInterval(revealInterval);
-          contractLink.textContent = fullText;
-        }
-      }, 100);
-    }
-    
-    // 3. Animated burn counter
-    function animateBurnCounter() {
-      const counter = document.querySelector('.burn-counter');
-      let amount = 42069420;
-      const targetAmount = 69694200;
-      const interval = setInterval(() => {
-        if (amount < targetAmount) {
-          amount += Math.floor(Math.random() * 10000);
-          counter.textContent = `$${amount.toLocaleString()} LP BURNED`;
-        } else {
-          clearInterval(interval);
-        }
-      }, 50);
-    }
-    
-    // Initialize
-    document.addEventListener('DOMContentLoaded', function() {
-      setTimeout(revealContract, 3000);
-      setTimeout(animateBurnCounter, 5000);
-      setTimeout(updateBounties, 10000);
+      ctx.fillStyle = "#0f0";
+      ctx.font = fontSize + "px monospace";
       
-      // Make contract link interactive
-      const contractLink = document.querySelector('.contract-link');
-      if (contractLink) {
-        contractLink.addEventListener('click', function(e) {
-          e.preventDefault();
-          this.textContent = "XpoSJH28d9aKcB5fT7mRnLqV3gE1wZ6yP4Wz9";
-        });
+      for (let i = 0; i < rainDrops.length; i++) {
+        const text = alphabet.charAt(Math.floor(Math.random() * alphabet.length));
+        ctx.fillText(text, i * fontSize, rainDrops[i] * fontSize);
+        
+        if (rainDrops[i] * fontSize > canvas.height && Math.random() > 0.975) {
+          rainDrops[i] = 0;
+        }
+        rainDrops[i]++;
       }
+    };
+    
+    setInterval(draw, 30);
+    
+    // ANIMATED COUNTERS
+    function animateValue(id, start, end, duration) {
+      let startTimestamp = null;
+      const element = document.getElementById(id);
+      const step = (timestamp) => {
+        if (!startTimestamp) startTimestamp = timestamp;
+        const progress = Math.min((timestamp - startTimestamp) / duration, 1);
+        element.innerHTML = Math.floor(progress * (end - start) + start).toLocaleString();
+        if (progress < 1) {
+          window.requestAnimationFrame(step);
+        }
+      };
+      window.requestAnimationFrame(step);
+    }
+    
+    // GLITCH EFFECTS
+    function triggerGlitch() {
+      const glitch = document.querySelector(".glitch");
+      glitch.style.animation = "none";
+      void glitch.offsetWidth; // Trigger reflow
+      glitch.style.animation = null;
+      
+      setTimeout(triggerGlitch, 5000 + Math.random() * 5000);
+    }
+    
+    // INIT
+    document.addEventListener("DOMContentLoaded", () => {
+      animateValue("wallet-counter", 0, 3421876, 2000);
+      triggerGlitch();
+      
+      // Panic meter randomizer
+      const panicLevels = ["RISING", "ELEVATED", "CRITICAL", "MAXIMUM"];
+      setInterval(() => {
+        document.getElementById("panic-meter").textContent = 
+          panicLevels[Math.floor(Math.random() * panicLevels.length)];
+      }, 3000);
+    });
+    
+    window.addEventListener("resize", () => {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
     });
   </script>
 </body>
