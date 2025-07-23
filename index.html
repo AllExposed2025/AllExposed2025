@@ -37,7 +37,7 @@
       z-index: 9999;
     }
 
-    /* NEW BANNER STYLES */
+    /* NEW TEXT-BASED BANNER STYLES */
     .banner-container {
       position: relative;
       width: 100%;
@@ -48,27 +48,41 @@
       margin-bottom: 2rem;
       background: linear-gradient(135deg, rgba(0, 20, 0, 0.8) 0%, rgba(0, 40, 0, 0.5) 100%);
       display: flex;
+      flex-direction: column;
       justify-content: center;
       align-items: center;
+      text-align: center;
+      padding: 20px;
     }
     
-    .matrix-banner {
-      max-height: 140px;
-      filter: 
-        drop-shadow(0 0 5px #00ff00)
-        drop-shadow(0 0 15px #00cc00)
-        hue-rotate(5deg);
-      animation: glitch 5s infinite linear;
-      transition: all 0.4s ease;
+    .text-banner h1 {
+      font-size: 4.5rem;
+      letter-spacing: 8px;
+      margin: 0;
+      animation: text-glitch 4s infinite;
+      text-shadow: 0 0 15px #00ff00, 0 0 30px #00cc00;
+      color: #00ff00;
     }
     
-    .matrix-banner:hover {
-      filter: 
-        drop-shadow(0 0 8px #00ff00)
-        drop-shadow(0 0 20px #00cc00)
-        hue-rotate(0deg)
-        brightness(1.2);
-      transform: scale(1.02);
+    .text-banner h2 {
+      font-size: 2.2rem;
+      letter-spacing: 4px;
+      margin-top: 10px;
+      opacity: 0.8;
+      text-shadow: 0 0 10px #00ff00;
+      animation: text-pulse 3s infinite alternate;
+    }
+    
+    @keyframes text-glitch {
+      0%, 100% { transform: translateX(0); text-shadow: 0 0 15px #00ff00, 0 0 30px #00cc00; }
+      25% { transform: translateX(-3px); text-shadow: 0 0 15px #00ff00, 0 0 30px #00cc00, 0 0 10px #ff00ff; }
+      50% { transform: translateX(3px); text-shadow: 0 0 15px #00ff00, 0 0 30px #00cc00, 0 0 10px #00ffff; }
+      75% { transform: translateX(-2px); text-shadow: 0 0 15px #00ff00, 0 0 30px #00cc00, 0 0 10px #ffff00; }
+    }
+    
+    @keyframes text-pulse {
+      0% { opacity: 0.6; transform: scale(0.98); }
+      100% { opacity: 1; transform: scale(1.02); }
     }
     
     .banner-scanline {
@@ -332,15 +346,16 @@
   <!-- Matrix rain effect canvas -->
   <canvas id="matrix-rain"></canvas>
   
-  <!-- BANNER WITH WORKING IMAGE -->
+  <!-- TEXT-BASED BANNER -->
   <div class="banner-container">
     <div class="banner-scanline"></div>
-    <img src="https://raw.githubusercontent.com/AllExposed2025/AllExposed2025/main/XPOS%20banner.PNG" alt="$XPOS - THE MATRIX OF TRUTH" class="matrix-banner">
+    <div class="text-banner">
+      <h1>$XPOS</h1>
+      <h2>THE MATRIX OF TRUTH</h2>
+    </div>
   </div>
 
   <div class="terminal-box">
-    <h1>$XPOS</h1>
-    <h2>THE MATRIX OF TRUTH</h2>
     <div class="typewriter-container">
       <p id="typewriter"></p>
     </div>
@@ -349,7 +364,7 @@
   <!-- Countdown Section -->
   <div class="terminal-box">
     <h3>🚀 LAUNCH COUNTDOWN</h3>
-    <p>August 1, 2025 at 18:00 CET</p>
+    <p>August 1, 2025 at 18:00 CET on SOLANA BLOCKCHAIN</p>
     <div id="countdown">
       <div class="countdown-unit">
         <span class="countdown-value" id="days">00</span>
@@ -370,6 +385,24 @@
     </div>
     <div id="countdown-warning" class="countdown-warning">
       <i class="fas fa-exclamation-triangle"></i> Token address will be revealed 15 minutes before launch
+    </div>
+  </div>
+ 
+ <!-- Access Code -->
+  <div class="terminal-box">
+    <h3>🔐 ACCESS CODE</h3>
+    <p>Enter the code to unlock the way to deeper truths and freedom:</p>
+    <div class="access-box">
+      <input type="password" class="access-input" id="accessCode" placeholder="•••••">
+      <button class="access-btn" onclick="checkAccess()">UNLOCK</button>
+    </div>
+    <p id="access-message" style="margin-top: 15px;"></p>
+    <div id="token-address" class="token-address">
+      <h4>Token Contract Address:</h4>
+      <p id="contract-address">0x742d35Cc6634C0532925a3b844Bc454e4438f44e</p>
+      <button class="download-btn" onclick="copyAddress()">
+        <i class="fas fa-copy"></i> COPY ADDRESS
+      </button>
     </div>
   </div>
 
@@ -445,24 +478,7 @@
     </div>
   </div>
   
-  <!-- Access Code -->
-  <div class="terminal-box">
-    <h3>🔐 ACCESS CODE</h3>
-    <p>Enter the code to unlock deeper truths:</p>
-    <div class="access-box">
-      <input type="password" class="access-input" id="accessCode" placeholder="•••••">
-      <button class="access-btn" onclick="checkAccess()">UNLOCK</button>
-    </div>
-    <p id="access-message" style="margin-top: 15px;"></p>
-    <div id="token-address" class="token-address">
-      <h4>Token Contract Address:</h4>
-      <p id="contract-address">0x742d35Cc6634C0532925a3b844Bc454e4438f44e</p>
-      <button class="download-btn" onclick="copyAddress()">
-        <i class="fas fa-copy"></i> COPY ADDRESS
-      </button>
-    </div>
-  </div>
-
+ 
   <div class="terminal-box">
     <h3>💬 CONNECT</h3>
     <p>Join us on Telegram, Twitter and beyond. Find the real ones.</p>
@@ -489,7 +505,7 @@ Tired of the DEGE/PSYOP puppet shows and endless rug pulls? Miss the days when c
 
 Want an honest, renounced cryptoride with zero backdoors?
  
-Join the reckoning!`;
+Join the reckoning! Join XPOS!`;
 
     let i = 0;
     const speed = 40;
