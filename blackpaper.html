@@ -371,7 +371,44 @@
       pointer-events: none;
     }
     
-    /* Responsive */
+    /* Mobile Navigation */
+    .mobile-nav {
+      display: none;
+      position: fixed;
+      bottom: 0;
+      width: 100%;
+      background: rgba(0, 20, 0, 0.95);
+      border-top: 1px solid #00ff00;
+      z-index: 10000;
+      padding: 10px 0;
+    }
+    
+    .nav-icons {
+      display: flex;
+      justify-content: space-around;
+    }
+    
+    .nav-icon {
+      color: #00ff00;
+      font-size: 1.5rem;
+      text-align: center;
+      padding: 10px;
+      border-radius: 8px;
+      transition: all 0.3s ease;
+    }
+    
+    .nav-icon.active {
+      background: rgba(0, 255, 0, 0.2);
+      box-shadow: 0 0 10px rgba(0, 255, 0, 0.5);
+    }
+    
+    .nav-icon span {
+      display: block;
+      font-size: 0.7rem;
+      margin-top: 3px;
+    }
+    
+    /* Responsive Enhancements */
     @media (max-width: 768px) {
       .text-banner h1 {
         font-size: 3rem;
@@ -391,6 +428,115 @@
       
       .roadmap-item {
         padding-left: 40px;
+      }
+      
+      .token-grid {
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      }
+      
+      .token-value {
+        font-size: 1.5rem;
+      }
+    }
+    
+    @media (max-width: 576px) {
+      .banner-container {
+        height: 180px;
+      }
+      
+      .text-banner h1 {
+        font-size: 2.2rem;
+        letter-spacing: 4px;
+      }
+      
+      .text-banner h2 {
+        font-size: 1.2rem;
+      }
+      
+      .terminal-box {
+        padding: 1rem;
+        margin: 1rem 0;
+      }
+      
+      .content-section h3::after {
+        width: 60px;
+      }
+      
+      .token-grid {
+        grid-template-columns: 1fr;
+      }
+      
+      .roadmap::before {
+        left: 10px;
+      }
+      
+      .roadmap-item {
+        padding-left: 30px;
+      }
+      
+      .roadmap-item::before {
+        left: 6px;
+      }
+      
+      .roadmap-content {
+        padding: 10px;
+      }
+      
+      /* Show mobile navigation */
+      .mobile-nav {
+        display: block;
+      }
+    }
+    
+    @media (max-width: 400px) {
+      .banner-container {
+        height: 150px;
+      }
+      
+      .text-banner h1 {
+        font-size: 1.8rem;
+      }
+      
+      .text-banner h2 {
+        font-size: 1rem;
+      }
+      
+      body {
+        font-size: 14px;
+      }
+      
+      .token-value {
+        font-size: 1.3rem;
+      }
+    }
+    
+    /* Performance optimizations */
+    @media (prefers-reduced-motion: reduce) {
+      * {
+        animation: none !important;
+        transition: none !important;
+      }
+    }
+    
+    /* Print styles */
+    @media print {
+      body {
+        background-color: white !important;
+        color: black !important;
+      }
+      
+      .terminal-box, .banner-container {
+        box-shadow: none !important;
+        border: 1px solid #ccc !important;
+      }
+      
+      #matrix-rain, .banner-scanline, body::after {
+        display: none !important;
+      }
+      
+      .highlight, .warning, .surprise, .token-title, .token-value {
+        color: black !important;
+        text-shadow: none !important;
       }
     }
   </style>
@@ -533,6 +679,32 @@
       <p>Verify everything. Trust no one. Especially us.</p>
     </footer>
   </div>
+  
+  <!-- Mobile Navigation -->
+  <div class="mobile-nav">
+    <div class="nav-icons">
+      <div class="nav-icon active">
+        <i class="fas fa-home"></i>
+        <span>Home</span>
+      </div>
+      <div class="nav-icon">
+        <i class="fas fa-file-alt"></i>
+        <span>Blackpaper</span>
+      </div>
+      <div class="nav-icon">
+        <i class="fas fa-chart-line"></i>
+        <span>Tokenomics</span>
+      </div>
+      <div class="nav-icon">
+        <i class="fas fa-road"></i>
+        <span>Roadmap</span>
+      </div>
+      <div class="nav-icon">
+        <i class="fas fa-users"></i>
+        <span>Community</span>
+      </div>
+    </div>
+  </div>
 
   <script>
     // Matrix rain effect
@@ -543,15 +715,15 @@
     canvas.width = window.innerWidth;
     canvas.height = window.innerHeight;
     
-    // Matrix characters
-    const matrixChars = "01010101010101010101010101010101010101010101010101";
-    const fontSize = 14;
+    // Matrix characters - reduced character set for performance
+    const matrixChars = "01";
+    const fontSize = window.innerWidth < 576 ? 12 : 14;
     const columns = canvas.width / fontSize;
     
     // Create drops for each column
     const drops = [];
     for (let i = 0; i < columns; i++) {
-      drops[i] = Math.random() * canvas.height;
+      drops[i] = Math.floor(Math.random() * canvas.height / fontSize);
     }
     
     function drawMatrix() {
@@ -566,15 +738,18 @@
       // Draw characters
       for (let i = 0; i < drops.length; i++) {
         const text = matrixChars.charAt(Math.floor(Math.random() * matrixChars.length));
-        ctx.fillText(text, i * fontSize, drops[i] * fontSize);
+        const x = i * fontSize;
+        const y = drops[i] * fontSize;
+        
+        ctx.fillText(text, x, y);
         
         // Reset drop if it reaches the bottom
-        if (drops[i] * fontSize > canvas.height && Math.random() > 0.975) {
+        if (y > canvas.height && Math.random() > 0.975) {
           drops[i] = 0;
+        } else {
+          // Move drop down
+          drops[i]++;
         }
-        
-        // Move drop down
-        drops[i]++;
       }
     }
     
@@ -582,11 +757,31 @@
     window.addEventListener('resize', function() {
       canvas.width = window.innerWidth;
       canvas.height = window.innerHeight;
+      
+      // Recalculate columns and reset drops
+      const newColumns = canvas.width / fontSize;
+      const newDrops = [];
+      
+      for (let i = 0; i < newColumns; i++) {
+        if (i < drops.length) {
+          newDrops[i] = drops[i];
+        } else {
+          newDrops[i] = Math.floor(Math.random() * canvas.height / fontSize);
+        }
+      }
+      
+      // Replace drops array
+      drops.length = 0;
+      Array.prototype.push.apply(drops, newDrops);
     });
     
     // Initialize everything
     window.onload = function() {
-      setInterval(drawMatrix, 50);
+      // Adjust matrix speed based on device
+      const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+      const interval = isMobile ? 100 : 50;
+      
+      setInterval(drawMatrix, interval);
       
       // Add subtle animation to roadmap items
       const roadmapItems = document.querySelectorAll('.roadmap-item');
@@ -600,6 +795,22 @@
         item.style.opacity = '0';
         item.style.transform = 'translateX(-20px)';
         item.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+      });
+      
+      // Mobile nav interaction
+      const navIcons = document.querySelectorAll('.nav-icon');
+      navIcons.forEach(icon => {
+        icon.addEventListener('click', function() {
+          navIcons.forEach(i => i.classList.remove('active'));
+          this.classList.add('active');
+          
+          // Scroll to section based on icon
+          const sections = document.querySelectorAll('.content-section');
+          const index = Array.from(navIcons).indexOf(this);
+          if (sections[index]) {
+            sections[index].scrollIntoView({ behavior: 'smooth' });
+          }
+        });
       });
     };
   </script>
