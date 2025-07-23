@@ -258,6 +258,7 @@
       border-radius: 4px;
       transition: all 0.3s;
       font-size: clamp(0.9rem, 2vw, 1rem);
+      cursor: pointer;
     }
     
     .download-btn:hover {
@@ -339,7 +340,6 @@
       background: rgba(0, 20, 0, 0.3);
       margin: 1.5rem 0;
       position: relative;
-      /* Changed from overflow: auto to visible */
       overflow: visible;
     }
     
@@ -401,6 +401,49 @@
       text-shadow: 0 0 10px var(--primary);
     }
     
+    /* Token contract section */
+    .contract-section {
+      background: rgba(0, 30, 0, 0.3);
+      border: 1px solid var(--primary);
+      padding: 20px;
+      border-radius: 8px;
+      margin-top: 20px;
+      display: none;
+    }
+    
+    .contract-row {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 15px;
+      margin-top: 15px;
+    }
+    
+    .contract-address {
+      font-family: monospace;
+      font-size: clamp(0.9rem, 2.5vw, 1.1rem);
+      word-break: break-all;
+      flex: 1;
+      min-width: 200px;
+    }
+    
+    .contract-btn {
+      background: var(--primary);
+      color: black;
+      border: none;
+      padding: 10px 20px;
+      font-family: 'Courier New', monospace;
+      font-weight: bold;
+      cursor: pointer;
+      transition: all 0.3s;
+      border-radius: 4px;
+    }
+    
+    .contract-btn:hover {
+      background: var(--primary-dark);
+      box-shadow: 0 0 10px var(--primary);
+    }
+    
     /* MEDIA QUERIES */
     @media (max-width: 768px) {
       .terminal-box {
@@ -423,6 +466,11 @@
       
       .typewriter-container {
         min-height: 150px;
+      }
+      
+      .contract-row {
+        flex-direction: column;
+        align-items: stretch;
       }
     }
     
@@ -513,7 +561,7 @@
       <p>Enter the code to unlock the way to deeper truths and freedom:</p>
       <div class="access-box">
         <input type="password" class="access-input" id="accessCode" placeholder="•••••">
-        <button class="access-btn" onclick="checkAccess()">UNLOCK</button>
+        <button class="access-btn" id="unlockBtn">UNLOCK</button>
       </div>
       <p id="access-message" style="margin-top: 15px; text-align: center;"></p>
       <div id="token-address" class="token-address">
@@ -530,6 +578,20 @@
     <div class="terminal-box">
       <h3>🔥 TOKEN: <span style="color:lime">$XPOS</span></h3>
       <p>$XPOS is your key to unlock hidden truths, digital liberation and blockchain defiance. Hold it. Share it. Spread it.</p>
+      
+      <!-- Contract Address Section -->
+      <div class="contract-section" id="contractSection">
+        <h4>Contract Address:</h4>
+        <div class="contract-row">
+          <div class="contract-address" id="contractAddress">0x742d35Cc6634C0532925a3b844Bc454e4438f44e</div>
+          <button class="contract-btn" onclick="copyContractAddress()">
+            <i class="fas fa-copy"></i> Copy Address
+          </button>
+        </div>
+        <div id="copy-confirm" style="text-align: center; margin-top: 10px; color: #00ff00; display: none;">
+          <i class="fas fa-check"></i> Address copied to clipboard!
+        </div>
+      </div>
     </div>
     
     <!-- Tokenomics Section -->
@@ -566,9 +628,9 @@
           <div class="token-value">100%</div>
           <div class="token-desc">No presale, no insiders, no backdoors</div>
         </div>
-                <div class="token-item">
+        <div class="token-item">
           <div class="token-title">Liquidity</div>
-          <div class="token-value">1 SOL - 97,500,000 XPOS</div>
+          <div class="token-value">1 SOL</div>
           <div class="token-desc">Locked @launch</div>
         </div>
         <div class="token-item">
@@ -620,6 +682,7 @@
     // Token address (placeholder - you'll update this later)
     const tokenAddress = "0x742d35Cc6634C0532925a3b844Bc454e4438f44e";
     document.getElementById('contract-address').textContent = tokenAddress;
+    document.getElementById('contractAddress').textContent = tokenAddress;
     
     // Launch date and time
     const launchDate = new Date('2025-08-01T18:00:00+02:00'); // CET is UTC+2
@@ -653,9 +716,6 @@ Join the reckoning! Join XPOS!`;
         cursor.innerHTML = "█";
         typewriterElement.appendChild(cursor);
         
-        // REMOVED THE SCROLL-INTO-VIEW LINE THAT WAS PREVENTING SCROLLING
-        // This was the main issue - it forced the container to scroll to the cursor
-        
         i++;
         setTimeout(typeWriter, speed);
       } else {
@@ -677,14 +737,20 @@ Join the reckoning! Join XPOS!`;
         document.getElementById('countdown-warning').style.display = 'none';
       }
       
+      // Show contract address 15 minutes before launch
+      if (now >= fifteenMinutesBefore) {
+        document.getElementById('contractSection').style.display = 'block';
+      }
+      
       if (diff <= 0) {
         document.getElementById('countdown').innerHTML = "<h3>LAUNCHED!</h3>";
         // Show token address permanently after launch
         document.getElementById('token-address').style.display = 'block';
         document.getElementById('accessCode').style.display = 'none';
-        document.querySelector('.access-btn').style.display = 'none';
+        document.getElementById('unlockBtn').style.display = 'none';
         document.getElementById('access-message').innerHTML = 
           "<span style='color:#0f0'>Launch complete! Token address is now available.</span>";
+        document.getElementById('contractSection').style.display = 'block';
         return;
       }
       
@@ -707,6 +773,9 @@ Join the reckoning! Join XPOS!`;
       const message = document.getElementById('access-message');
       const now = new Date();
       
+      // Clear the input field
+      document.getElementById('accessCode').value = '';
+      
       // After launch - always show token address
       if (now >= launchDate) {
         document.getElementById('token-address').style.display = 'block';
@@ -714,10 +783,9 @@ Join the reckoning! Join XPOS!`;
         return;
       }
       
-      // Within 15 minutes of launch
+      // Within 15 minutes of launch - unlock button has no function
       if (now >= fifteenMinutesBefore) {
-        document.getElementById('token-address').style.display = 'block';
-        message.innerHTML = "<span style='color:#0f0'>Access granted! Token address revealed.</span>";
+        // Do nothing - contract address is already shown
         return;
       }
       
@@ -736,6 +804,17 @@ Join the reckoning! Join XPOS!`;
       setTimeout(() => {
         document.body.style.animation = "background-glow 10s ease-in-out infinite alternate";
       }, 1000);
+    }
+    
+    // Copy contract address to clipboard
+    function copyContractAddress() {
+      navigator.clipboard.writeText(tokenAddress);
+      const confirm = document.getElementById('copy-confirm');
+      confirm.style.display = 'block';
+      
+      setTimeout(() => {
+        confirm.style.display = 'none';
+      }, 2000);
     }
     
     // Matrix rain effect
@@ -780,7 +859,7 @@ Join the reckoning! Join XPOS!`;
         ctx.fillText(text, i * fontSize, drops[i] * fontSize);
         
         // Reset drop if it reaches the bottom
-        if (drops[i] * fontSize > canvas.height && Math.random() > 0.975) {
+        if (drops[i] * fontSize a> canvas.height && Math.random() > 0.975) {
           drops[i] = 0;
         }
         
@@ -808,6 +887,9 @@ Join the reckoning! Join XPOS!`;
       // Initialize matrix
       initMatrix();
       setInterval(drawMatrix, 50);
+      
+      // Add event listener to unlock button
+      document.getElementById('unlockBtn').addEventListener('click', checkAccess);
     };
   </script>
 </body>
