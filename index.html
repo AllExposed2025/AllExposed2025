@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>CRYPTORECKONING - THE MATRIX OF TRUTH</title>
+  <title>$XPOS - THE MATRIX OF TRUTH</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
   <style>
     body {
@@ -242,23 +242,92 @@
       background: #00cc00;
       box-shadow: 0 0 10px #00ff00;
     }
+    
+    /* New typewriter container */
+    .typewriter-container {
+      min-height: 200px;
+      padding: 1rem;
+      border: 1px solid #00ff00;
+      background: rgba(0, 20, 0, 0.3);
+      margin: 2rem auto;
+      position: relative;
+    }
+    
+    #typewriter {
+      font-size: 1.4rem;
+      color: #0f0;
+      text-shadow: 0 0 5px #00ff00;
+      line-height: 1.8;
+      min-height: 180px;
+      white-space: pre-wrap;
+    }
+    
+    /* Moving cursor */
+    #typing-cursor {
+      display: inline;
+      position: relative;
+      animation: blink 1s steps(2, start) infinite;
+    }
+    
+    /* Token address display */
+    .token-address {
+      background: rgba(0, 30, 0, 0.5);
+      border: 1px solid #00ff00;
+      padding: 15px;
+      margin-top: 20px;
+      border-radius: 4px;
+      font-family: monospace;
+      font-size: 1.1rem;
+      word-break: break-all;
+      display: none;
+    }
+    
+    .countdown-warning {
+      color: #ff0;
+      font-weight: bold;
+      margin-top: 10px;
+      display: none;
+    }
   </style>
 </head>
 <body>
-  <!-- Matrix banner with logo -->
-  <div class="matrix-banner">
-    <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI0MDAiIGhlaWdodD0iMTIwIiB2aWV3Qm94PSIwIDAgNDAwIDEyMCI+PHJlY3Qgd2lkdGg9IjQwMCIgaGVpZ2h0PSIxMjAiIGZpbGw9IiMwMDAwMDAiLz48dGV4dCB4PSIyMDAiIHk9IjYwIiBmb250LWZhbWlseT0iQ291cmllciBOZXciIGZvbnQtc2l6ZT0iMjQiIGZpbGw9IiMwMGZmMDAiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZvbnQtd2VpZ2h0PSJib2xkIj5DUllQVE9SRUNLT05JTkc8L3RleHQ+PHRleHQgeD0iMjAwIiB5PSI5MCIgZm9udC1mYW1pbHk9IkNvdXJpZXIgTmV3IiBmb250LXNpemU9IjE0IiBmaWxsPSIjMDBmZjAwIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIj5USEUgTUFUUklYIE9GIFRSVVRIPC90ZXh0Pjwvc3ZnPg==" class="matrix-logo" alt="CRYPTORECKONING">
-  </div>
-  
+ 
   <!-- Matrix rain effect canvas -->
   <canvas id="matrix-rain"></canvas>
 
   <div class="terminal-box">
-    <h1>CRYPTORECKONING</h1>
+    <h1>$XPOS</h1>
     <h2>THE MATRIX OF TRUTH</h2>
-    <p id="typewriter"></p>
-    <p>Are you sick and tired of being rugged and puppeteered by the scamming crypto elite? Wanna have a carefree renounced trading experience? Join us.</p>
-    <p class="blink">█</p>
+    <div class="typewriter-container">
+      <p id="typewriter"></p>
+    </div>
+  </div>
+  
+  <!-- Countdown Section -->
+  <div class="terminal-box">
+    <h3>🚀 LAUNCH COUNTDOWN</h3>
+    <p>August 1, 2025 at 18:00 CET</p>
+    <div id="countdown">
+      <div class="countdown-unit">
+        <span class="countdown-value" id="days">00</span>
+        <span class="countdown-label">DAYS</span>
+      </div>
+      <div class="countdown-unit">
+        <span class="countdown-value" id="hours">00</span>
+        <span class="countdown-label">HOURS</span>
+      </div>
+      <div class="countdown-unit">
+        <span class="countdown-value" id="minutes">00</span>
+        <span class="countdown-label">MINUTES</span>
+      </div>
+      <div class="countdown-unit">
+        <span class="countdown-value" id="seconds">00</span>
+        <span class="countdown-label">SECONDS</span>
+      </div>
+    </div>
+    <div id="countdown-warning" class="countdown-warning">
+      <i class="fas fa-exclamation-triangle"></i> Token address will be revealed 15 minutes before launch
+    </div>
   </div>
 
   <div class="terminal-box">
@@ -308,37 +377,13 @@
     </div>
   </div>
   
-  <!-- Countdown Section -->
-  <div class="terminal-box">
-    <h3>🚀 LAUNCH COUNTDOWN</h3>
-    <p>August 1, 2025 at 18:00 CET</p>
-    <div id="countdown">
-      <div class="countdown-unit">
-        <span class="countdown-value" id="days">00</span>
-        <span class="countdown-label">DAYS</span>
-      </div>
-      <div class="countdown-unit">
-        <span class="countdown-value" id="hours">00</span>
-        <span class="countdown-label">HOURS</span>
-      </div>
-      <div class="countdown-unit">
-        <span class="countdown-value" id="minutes">00</span>
-        <span class="countdown-label">MINUTES</span>
-      </div>
-      <div class="countdown-unit">
-        <span class="countdown-value" id="seconds">00</span>
-        <span class="countdown-label">SECONDS</span>
-      </div>
-    </div>
-  </div>
-  
   <!-- Whitepaper Download -->
   <div class="terminal-box">
     <h3>💾 WHITEPAPER & ROADMAP</h3>
     <p>Download our manifesto to understand the full vision and roadmap.</p>
     <div class="download-box">
       <i class="fas fa-file-pdf" style="font-size: 3rem;"></i>
-      <p>CRYPTORECKONING_WHITEPAPER_v1.0.pdf</p>
+      <p>$XPOS_WHITEPAPER_v1.0.pdf</p>
       <a href="#" class="download-btn">
         <i class="fas fa-download"></i> DOWNLOAD (2.4MB)
       </a>
@@ -366,6 +411,13 @@
       <button class="access-btn" onclick="checkAccess()">UNLOCK</button>
     </div>
     <p id="access-message" style="margin-top: 15px;"></p>
+    <div id="token-address" class="token-address">
+      <h4>Token Contract Address:</h4>
+      <p id="contract-address">0x742d35Cc6634C0532925a3b844Bc454e4438f44e</p>
+      <button class="download-btn" onclick="copyAddress()">
+        <i class="fas fa-copy"></i> COPY ADDRESS
+      </button>
+    </div>
   </div>
 
   <div class="terminal-box">
@@ -378,31 +430,71 @@
   </div>
 
   <script>
-    // Typewriter effect
-    const text = `Wake up, visitor.
-You are entering the blockchain resistance.
-Decentralized truth awaits.
+    // Token address (placeholder - you'll update this later)
+    const tokenAddress = "0x742d35Cc6634C0532925a3b844Bc454e4438f44e";
+    document.getElementById('contract-address').textContent = tokenAddress;
+    
+    // Launch date and time
+    const launchDate = new Date('2025-08-01T18:00:00+02:00'); // CET is UTC+2
+    const fifteenMinutesBefore = new Date(launchDate.getTime() - 15 * 60000);
+    
+    // Extended typewriter text
+    const text = `This is $XPOS.
+You are entering the blockchain resistance. Decentralized truth awaits.
 Trust no one. Verify everything.
-This is CRYPTORECKONING.`;
+Sick of riding the train downhill and being puppeteered and rugged by the scamming crypto elite?
+Wanna have an honnest oldschool crypto experience? 
+
+Join us.`;
 
     let i = 0;
     const speed = 40;
+    const typewriterElement = document.getElementById("typewriter");
+    
     function typeWriter() {
       if (i < text.length) {
-        document.getElementById("typewriter").innerHTML += text.charAt(i);
+        if (typewriterElement.lastChild && typewriterElement.lastChild.id === "typing-cursor") {
+          typewriterElement.removeChild(typewriterElement.lastChild);
+        }
+        
+        typewriterElement.innerHTML += text.charAt(i);
+        
+        const cursor = document.createElement("span");
+        cursor.id = "typing-cursor";
+        cursor.innerHTML = "█";
+        typewriterElement.appendChild(cursor);
+        
+        cursor.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'end' });
+        
         i++;
         setTimeout(typeWriter, speed);
+      } else {
+        if (typewriterElement.lastChild && typewriterElement.lastChild.id === "typing-cursor") {
+          typewriterElement.removeChild(typewriterElement.lastChild);
+        }
       }
     }
     
     // Countdown timer
     function updateCountdown() {
-      const launchDate = new Date('2025-08-01T18:00:00+02:00'); // CET is UTC+2
       const now = new Date();
       const diff = launchDate - now;
       
+      // Show warning when we're within 1 hour of launch
+      if (diff < 60 * 60 * 1000) {
+        document.getElementById('countdown-warning').style.display = 'block';
+      } else {
+        document.getElementById('countdown-warning').style.display = 'none';
+      }
+      
       if (diff <= 0) {
         document.getElementById('countdown').innerHTML = "<h3>LAUNCHED!</h3>";
+        // Show token address permanently after launch
+        document.getElementById('token-address').style.display = 'block';
+        document.getElementById('accessCode').style.display = 'none';
+        document.querySelector('.access-btn').style.display = 'none';
+        document.getElementById('access-message').innerHTML = 
+          "<span style='color:#0f0'>Launch complete! Token address is now available.</span>";
         return;
       }
       
@@ -419,6 +511,43 @@ This is CRYPTORECKONING.`;
     
     setInterval(updateCountdown, 1000);
     
+    // Access code check
+    function checkAccess() {
+      const code = document.getElementById('accessCode').value;
+      const message = document.getElementById('access-message');
+      const now = new Date();
+      
+      // After launch - always show token address
+      if (now >= launchDate) {
+        document.getElementById('token-address').style.display = 'block';
+        message.innerHTML = "<span style='color:#0f0'>Launch complete! Token address is now available.</span>";
+        return;
+      }
+      
+      // Within 15 minutes of launch
+      if (now >= fifteenMinutesBefore) {
+        document.getElementById('token-address').style.display = 'block';
+        message.innerHTML = "<span style='color:#0f0'>Access granted! Token address revealed.</span>";
+        return;
+      }
+      
+      // Before 15 minutes of launch
+      message.innerHTML = "<span style='color:#f00'>Invalid code. The token address will be revealed 15 minutes before launch.</span>";
+    }
+    
+    // Copy address to clipboard
+    function copyAddress() {
+      navigator.clipboard.writeText(tokenAddress);
+      const message = document.getElementById('access-message');
+      message.innerHTML = "<span style='color:#0f0'>Address copied to clipboard!</span>";
+      
+      // Add a cool effect
+      document.body.style.animation = "background-glow 0.5s ease-in-out infinite alternate";
+      setTimeout(() => {
+        document.body.style.animation = "background-glow 10s ease-in-out infinite alternate";
+      }, 1000);
+    }
+    
     // Matrix rain effect
     const canvas = document.getElementById('matrix-rain');
     const ctx = canvas.getContext('2d');
@@ -428,7 +557,7 @@ This is CRYPTORECKONING.`;
     canvas.height = window.innerHeight;
     
     // Matrix characters
-    const matrixChars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ123456789@#$%^&*()_+-=[]{}|;:,.<>?";
+    const matrixChars = "日本語文字列表示例漢字仮名交じり文を生成しています零壱弐参肆伍陸漆捌玖拾百千萬億兆京正載極恒河沙阿僧祇那由他不可思議無量大数分厘毛糸忽微繊沙塵埃渺漠模糊逡巡須臾瞬息弾指刹那六徳虚空清浄";
     const fontSize = 14;
     const columns = canvas.width / fontSize;
     
@@ -468,21 +597,15 @@ This is CRYPTORECKONING.`;
       canvas.height = window.innerHeight;
     });
     
-    // Access code check
-    function checkAccess() {
-      const code = document.getElementById('accessCode').value;
-      const message = document.getElementById('access-message');
-      
-      if (code.toUpperCase() === "XPOS") {
-        message.innerHTML = "<span style='color:#0f0'>Access granted! Truth matrix unlocked.</span>";
-      } else {
-        message.innerHTML = "<span style='color:#f00'>Invalid code. The truth remains concealed.</span>";
-      }
-    }
-    
     // Initialize everything
     window.onload = function() {
-      typeWriter();
+      // Start with the cursor in place
+      const cursor = document.createElement("span");
+      cursor.id = "typing-cursor";
+      cursor.innerHTML = "█";
+      typewriterElement.appendChild(cursor);
+      
+      setTimeout(typeWriter, 1000);
       updateCountdown();
       setInterval(drawMatrix, 50);
     };
