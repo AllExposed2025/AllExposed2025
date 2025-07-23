@@ -331,7 +331,7 @@
       box-shadow: 0 0 10px var(--primary);
     }
     
-    /* Typewriter container */
+    /* Typewriter container - FIXED */
     .typewriter-container {
       min-height: 180px;
       padding: 1rem;
@@ -339,7 +339,8 @@
       background: rgba(0, 20, 0, 0.3);
       margin: 1.5rem 0;
       position: relative;
-      overflow: auto;
+      /* Changed from overflow: auto to visible */
+      overflow: visible;
     }
     
     #typewriter {
@@ -567,7 +568,7 @@
         </div>
                 <div class="token-item">
           <div class="token-title">Liquidity</div>
-          <div class="token-value">1 SOL</div>
+          <div class="token-value">1 SOL - 97,500,000 XPOS</div>
           <div class="token-desc">Locked @launch</div>
         </div>
         <div class="token-item">
@@ -652,7 +653,8 @@ Join the reckoning! Join XPOS!`;
         cursor.innerHTML = "█";
         typewriterElement.appendChild(cursor);
         
-        cursor.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'end' });
+        // REMOVED THE SCROLL-INTO-VIEW LINE THAT WAS PREVENTING SCROLLING
+        // This was the main issue - it forced the container to scroll to the cursor
         
         i++;
         setTimeout(typeWriter, speed);
